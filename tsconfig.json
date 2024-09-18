@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",               // Targeting ECMAScript 6
+    "module": "commonjs",           // Using CommonJS modules (required for Node.js)
+    "experimentalDecorators": true, // Enable support for decorators
+    "emitDecoratorMetadata": true,  // Emit type metadata for decorators
+    "strict": true,                 // Enable all strict type-checking options
+    "esModuleInterop": true,        // Enable interoperability between CommonJS and ES modules
+    "skipLibCheck": true,           // Skip type checking of all declaration files (.d.ts)
+    "outDir": "./dist"              // Output directory for compiled files
+  },
+  "include": [
+    "src/**/*.ts", // Include all .ts files in the 'src' folder
+    "src/**/*.js" // Include all .ts files in the 'src' folder
+  ],
+  "exclude": [
+    "node_modules" // Exclude 'node_modules' folder
+  ]
+}
