@@ -2,14 +2,15 @@
 import { UserController } from "../../../controllers/Admin/UserController";
 import { ProductController } from "../../../controllers/Admin/ProductController";
 import { AbstractRouter } from "../../Base";
+import { RegisterRoutes } from "../../../commonUtility/commonFunction";
 
 class UserRoutes extends AbstractRouter {
     constructor(){
        super()
     }
-     getRouteConfig() {
+     getRouteConfig(): RegisterRoutes<any> {
         return {
-            parentController: UserRoutes,
+            parentInstance: this,
             childControllers: [{
                 childRouter: UserController,
                 routerBasePath: ''
@@ -17,7 +18,6 @@ class UserRoutes extends AbstractRouter {
                 childRouter: ProductController,
                 routerBasePath: ''
             }],
-            isBaseLevel:true
         };
     }
 }

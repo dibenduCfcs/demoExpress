@@ -1,31 +1,33 @@
-import { Request, Response } from "express";
-import { JsonResponse } from "../../class/response";
-import { CommonUtility } from "../../commonUtility";
-
+import { Request, Response } from 'express';
+import { JsonResponse } from '../../class/response';
+import { CommonUtility } from '../../commonUtility';
+import Database from '../../database';
 
 class UserRepository {
+  commonUtility: CommonUtility;
+  dbContext: Database;
 
-    data: any[];
-    commonUtility:CommonUtility;
+  constructor() {
+    this.commonUtility = new CommonUtility();
+    this.dbContext = new Database();
+  }
 
-    constructor() {
-        this.commonUtility = new CommonUtility();
-        this.data = [];
+  async createUser(req: Request, res: Response) {
+    let result = this.dbContext.insert('User', req.body);
+    let response = new JsonResponse(result, 'User Added Successfully.');
+    return response.send(res);
+  }
+
+  async userLogin(req: Request, res: Response) {
+    const { mobile } = req.body;
+    let findUser = await this.dbContext.find('User', { mobile });
+    if (findUser.length === 0) {
+      return new JsonResponse({}, 'User Not Found', 0);
     }
-    
-    async createUser(req:Request,res:Response){
-        this.data.push(req.body);
-        let response = new JsonResponse(this.data,"User Added Successfully.")
-        return response.send(res)
-    }
-
-    async userLogin(req:Request,res:Response){
-        let createToken = this.commonUtility.genrateJWTToken(req.body);
-        let response = new JsonResponse({token: createToken},"User Login Successfully.")
-        return  response.send(res);
-    }
-
-} 
-export {
-    UserRepository
+    let userData = findUser[0];
+    let token = this.commonUtility.genrateJWTToken({ userData });
+    let response = new JsonResponse({ token }, 'User Login Successfully.');
+    return response.send(res);
+  }
 }
+export { UserRepository };

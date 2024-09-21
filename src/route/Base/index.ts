@@ -13,14 +13,15 @@ abstract class AbstractRouter {
      abstract getRouteConfig(): RegisterRoutes<any>;
 
     // Common method to register routes using the provided configuration
-    public registerRouter(): Router {
+    public registerRouter() {
         const config = this.getRouteConfig();
-        return registerRoutetoRoutes(config);
+        registerRoutetoRoutes(config);
     }
 
     // Common method to get the router, invoking the registerRouter method
-    public getRouter(): Router {
-       return this.registerRouter();
+    public getRouter():Router {
+        this.registerRouter();
+        return this.router;
     }
 }
 

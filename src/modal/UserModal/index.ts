@@ -1,18 +1,19 @@
-import { BaseModel, SchemaDefinition } from "../BaseModal";
+import { BaseModel, SchemaDefinition } from '../BaseModal';
 
 export class UserModel extends BaseModel {
-     schema:SchemaDefinition = {
-        name: {
-            type: 'string'
-        },
-        mobile:{
-            type: 'number'
-        }
-    };
+  schema: SchemaDefinition = {
+    name: {
+      type: 'string',
+    },
+    email: {
+      type: 'string',
+    },
+    mobile: {
+      type: 'number',
+    },
+  };
 
-    createSchema(): UserModel {
-        return new UserModel();
-    }
+  createSchema(): UserModel {
+    return new UserModel();
+  }
 }
-
- 
