@@ -1,15 +1,22 @@
+import { CityMasterModel } from './city';
+import { CountryMasterModel } from './country';
+import { PropertyModel } from './property';
+import { PropertyDTypeModel } from './propertyDType';
+import { PropertyPTypeModel } from './propertyPType';
+import { UserRoleModel } from './role';
+import { StateMasterModel } from './state';
 import { UserModel } from './user';
+import { ZoneMasterModel } from './zone';
 
-class DbContext {
-  models: any[];
-  constructor() {
-    this.models = [UserModel];
-  }
-
-  getCollection(collectionName: string) {
-    return this.models
-      .filter((model) => model.modelName === collectionName)
-      .at(0);
-  }
-}
-export { DbContext };
+const tableSchemas = [
+  UserRoleModel,
+  UserModel,
+  PropertyModel,
+  PropertyPTypeModel,
+  PropertyDTypeModel,
+  CountryMasterModel,
+  StateMasterModel,
+  ZoneMasterModel,
+  CityMasterModel,
+];
+export { tableSchemas };

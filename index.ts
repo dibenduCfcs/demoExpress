@@ -1,50 +1,25 @@
-import express, { Express } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import { Routes } from './src/route';
 import { setupSwagger } from './src/swagger';
-import {
-  getControllerList,
-  registerRoutetoRoutes,
-} from './src/commonUtility/commonFunction';
-import Database from './src/database';
+import { dbIntance } from './src/database';
+import { expressApp } from 'express-swagger-decorators';
+import { errorhandler } from './src/middleware';
+import { tableSchemas } from './src/database/context';
 
-class App {
-  app: Express;
-  dbContext: Database;
-
-  constructor() {
-    this.app = express();
-    this.dbContext = new Database();
-  }
-
-  addAPIRoutes(): void {
-    registerRoutetoRoutes({
-      parentInstance: this,
-      childControllers: [{ childRouter: Routes, routerBasePath: '/api/v1' }],
-    });
-  }
-
-  getControllerListFunc() {
-    return getControllerList<any>(this);
-  }
-
-  getInstance(): Express {
-    return this.app;
-  }
-}
-
-const appInstance = new App();
+const appInstance = expressApp();
 const app = appInstance.getInstance();
 
+dbIntance.connect();
+appInstance.setDbContext(dbIntance.getContext());
+appInstance.dbContext.addModels(tableSchemas);
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json({ limit: '1gb' }));
 app.use(express.urlencoded({ limit: '1gb', extended: true }));
 app.use(express.static('public'));
-appInstance.dbContext.connect();
-appInstance.addAPIRoutes();
-
-setupSwagger(app, App);
-
+appInstance.addAPIRoutes([{ route: Routes, path: '/api/v1' }]);
+setupSwagger(appInstance);
+app.use(errorhandler);
 app.listen(3000);

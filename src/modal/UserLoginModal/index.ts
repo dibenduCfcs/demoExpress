@@ -1,15 +1,25 @@
-import { BaseModel, SchemaDefinition } from "../BaseModal";
+import { BaseModel, SchemaDefinition } from 'express-swagger-decorators';
 
-export class UserLoginModel extends BaseModel {
-     schema:SchemaDefinition = {
-        mobile:{
-            type: 'number'
-        }
-    };
-
-    createSchema(): UserLoginModel {
-        return new UserLoginModel();
-    }
+interface UserLoginSchema extends SchemaDefinition {
+  email: {
+    type: 'string';
+  };
+  password: {
+    type: 'string';
+  };
 }
 
- 
+export class UserLoginModel extends BaseModel {
+  schema: UserLoginSchema = {
+    email: {
+      type: 'string',
+    },
+    password: {
+      type: 'string',
+    },
+  };
+
+  createSchema(): UserLoginModel {
+    return new UserLoginModel();
+  }
+}

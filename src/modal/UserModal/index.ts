@@ -1,7 +1,25 @@
-import { BaseModel, SchemaDefinition } from '../BaseModal';
+import { BaseModel, SchemaDefinition } from 'express-swagger-decorators';
+
+interface UserSchemaDefinition extends SchemaDefinition {
+  name: {
+    type: 'string';
+  };
+  email: {
+    type: 'string';
+  };
+  mobile: {
+    type: 'number';
+  };
+  password: {
+    type: 'string';
+  };
+  roleId: {
+    type: 'number';
+  };
+}
 
 export class UserModel extends BaseModel {
-  schema: SchemaDefinition = {
+  schema: UserSchemaDefinition = {
     name: {
       type: 'string',
     },
@@ -9,6 +27,12 @@ export class UserModel extends BaseModel {
       type: 'string',
     },
     mobile: {
+      type: 'number',
+    },
+    password: {
+      type: 'string',
+    },
+    roleId: {
       type: 'number',
     },
   };
