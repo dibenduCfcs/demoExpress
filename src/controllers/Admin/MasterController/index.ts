@@ -77,7 +77,7 @@ class MasterController {
     }
   }
   @HttpPost('addEditCountry', AddEditCountryModel)
-  @Authenticate()
+  // @Authenticate()
   async addEditCountry(
     @FromBody() body: AddEditCountryType,
     @ResponseDecorator() res: Response,
@@ -90,7 +90,7 @@ class MasterController {
     }
   }
   @HttpPost('addEditState', AddEditStateModel)
-  @Authenticate()
+  // @Authenticate()
   async addEditState(
     @FromBody() body: AddEditStateType,
     @ResponseDecorator() res: Response,
@@ -103,7 +103,7 @@ class MasterController {
     }
   }
   @HttpPost('addEditZone', AddEditZoneModel)
-  @Authenticate()
+  // @Authenticate()
   async addEditZone(
     @FromBody() body: AddEditZoneType,
     @ResponseDecorator() res: Response,
@@ -116,7 +116,7 @@ class MasterController {
     }
   }
   @HttpPost('addEditCity', AddEditCityModel)
-  @Authenticate()
+  // @Authenticate()
   async addEditCity(
     @FromBody() body: AddEditCityType,
     @ResponseDecorator() res: Response,

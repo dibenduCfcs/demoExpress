@@ -80,7 +80,7 @@ class MasterRepository {
         { ...prm },
       );
       if (!acknowledged) {
-        return new JsonResponse({}, 'Something went wrong.', 0).send(res);
+        return new JsonResponse({}, 'Unable to Update Country.', 0).send(res);
       }
       return new JsonResponse({}, 'Country Name Updated Succesfully.').send(
         res,
@@ -96,7 +96,7 @@ class MasterRepository {
         countryId,
       });
       if (error) {
-        return new JsonResponse({}, 'Something went wrong.', 0).send(res);
+        return new JsonResponse({}, error, 0).send(res);
       }
       return new JsonResponse({ data: success?.at(0) ?? {} }).send(res);
     }
@@ -109,7 +109,7 @@ class MasterRepository {
         { ...prm },
       );
       if (!acknowledged) {
-        return new JsonResponse({}, 'Something went wrong.', 0).send(res);
+        return new JsonResponse({}, 'Unable to Update Zone', 0).send(res);
       }
       return new JsonResponse({}, 'Zone Name Updated Succesfully.').send(res);
     } else {
@@ -119,7 +119,7 @@ class MasterRepository {
         zoneId,
       });
       if (error) {
-        return new JsonResponse({}, 'Something went wrong.', 0).send(res);
+        return new JsonResponse({}, error, 0).send(res);
       }
       return new JsonResponse({ data: success?.at(0) ?? {} }).send(res);
     }
@@ -132,7 +132,7 @@ class MasterRepository {
         { ...prm },
       );
       if (!acknowledged) {
-        return new JsonResponse({}, 'Something went wrong.', 0).send(res);
+        return new JsonResponse({}, 'Unable to Update State.', 0).send(res);
       }
       return new JsonResponse({}, 'Zone Name Updated Succesfully.').send(res);
     } else {
@@ -146,7 +146,7 @@ class MasterRepository {
         stateId,
       });
       if (error) {
-        return new JsonResponse({}, 'Something went wrong.', 0).send(res);
+        return new JsonResponse({}, error, 0).send(res);
       }
       return new JsonResponse({ data: success?.at(0) ?? {} }).send(res);
     }

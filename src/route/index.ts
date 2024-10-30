@@ -4,6 +4,7 @@ import { UserController as UserControllerApp } from '../controllers/App/UserCont
 import { MasterController } from '../controllers/Admin/MasterController';
 import { CustomerController } from '../controllers/App/CustomerController';
 import { PropertyController } from '../controllers/Admin/PropertyController';
+import { DropDownController } from '../controllers/Common/DropDown';
 
 class Routes extends AbstractRouter {
   constructor() {
@@ -16,6 +17,7 @@ class Routes extends AbstractRouter {
       { childRouter: UserControllerApp },
       { childRouter: MasterController },
       { childRouter: CustomerController },
+      { childRouter: DropDownController },
     ];
   }
 }

@@ -16,6 +16,7 @@ const swaggerDefinition = {
   servers: [
     {
       url: 'http://localhost:3000',
+      name: 'Local Host',
     },
   ],
   components: {

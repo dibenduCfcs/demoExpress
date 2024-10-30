@@ -6,8 +6,8 @@ interface ICityType extends AddEditCityType, Document {
 }
 
 const tableSchema = new Schema<ICityType>({
-  stateId: { type: Number, required: true, unique: true },
-  cityId: { type: Number, required: true },
+  stateId: { type: Number, required: true },
+  cityId: { type: Number, required: true, unique: true },
   cityName: { type: String, required: true },
 });
 
